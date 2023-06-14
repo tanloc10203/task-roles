@@ -111,7 +111,7 @@ npm install typescript ts-node-dev tsconfig-paths @types/express @types/config p
 #### Install dependencies
 
 ```sh
-npm install mysql2 config bcrypt pino dayjs nanoid lodash jsonwebtoken dotenv zod cors compression helmet morgan
+npm install express mysql2 config bcrypt pino dayjs nanoid lodash jsonwebtoken dotenv zod cors compression helmet morgan
 ```
 
 #### Cài đặt file `package.json`
