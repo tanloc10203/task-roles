@@ -123,3 +123,9 @@ npm install mysql2 config bcrypt pino dayjs nanoid lodash jsonwebtoken dotenv zo
   "build": "npm install"
 },
 ```
+
+#### Câu lệnh khởi tạo file `.gitignore`
+
+```sh
+npx gitignore node
+```
