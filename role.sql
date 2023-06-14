@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS `Roles` (
   PRIMARY KEY `pk_id`(`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `PermissionRoles` (
+CREATE TABLE IF NOT EXISTS `RolePermission` (
   `permission_id` INT UNSIGNED NOT NULL,
   `role_id` INT UNSIGNED NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  CONSTRAINT `fk_PermissionRoles_Permissions` FOREIGN KEY (`permission_id`) REFERENCES `Permissions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `fk_PermissionRoles_Roles` FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_RolePermission_Permissions` FOREIGN KEY (`permission_id`) REFERENCES `Permissions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `fk_RolePermission_Roles` FOREIGN KEY (`role_id`) REFERENCES `Roles` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   PRIMARY KEY `pk_id`(`permission_id`, `role_id`)
 ) ENGINE = InnoDB;
 
