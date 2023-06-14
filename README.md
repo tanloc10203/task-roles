@@ -8,7 +8,7 @@
 
 - **Roles** (**`id`**, `name`, `desc`)
 
-- **RolePermission** (<u>**`permission_id`**</u>, <u>**`role_id`**</u>)
+- **RolePermissions** (<u>**`permission_id`**</u>, <u>**`role_id`**</u>)
 
 - **Users** (**`id`**, `display_name`, `username`, `password`)
 
@@ -105,7 +105,7 @@ tsc --init
 #### Install dev dependencies
 
 ```sh
-npm install typescript ts-node-dev @types/express @types/config pino-pretty @types/lodash @types/jsonwebtoken @types/cors @types/compression @types/morgan @types/bcrypt -D
+npm install typescript ts-node-dev tsconfig-paths @types/express @types/config pino-pretty @types/lodash @types/jsonwebtoken @types/cors @types/compression @types/morgan @types/bcrypt -D
 ```
 
 #### Install dependencies
