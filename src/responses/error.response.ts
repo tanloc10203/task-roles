@@ -2,10 +2,12 @@ import { ReasonPhrases, StatusCodes } from "@src/core";
 
 export class ErrorResponse extends Error {
   status: number;
+  others: any;
 
-  constructor(message: string, status: number) {
+  constructor(message: string, status: number, others?: any) {
     super(message);
     this.status = status;
+    this.others = others;
   }
 }
 
@@ -30,9 +32,10 @@ export class InternalServerRequestError extends ErrorResponse {
 export class BadRequestError extends ErrorResponse {
   constructor(
     message = ReasonPhrases.BAD_REQUEST,
-    statusCode = StatusCodes.BAD_REQUEST
+    statusCode = StatusCodes.BAD_REQUEST,
+    others?: any
   ) {
-    super(message, statusCode);
+    super(message, statusCode, others);
   }
 }
 
@@ -40,6 +43,15 @@ export class ForbiddenRequestError extends ErrorResponse {
   constructor(
     message = ReasonPhrases.BAD_REQUEST,
     statusCode = StatusCodes.BAD_REQUEST
+  ) {
+    super(message, statusCode);
+  }
+}
+
+export class ConflictRequestError extends ErrorResponse {
+  constructor(
+    message = ReasonPhrases.CONFLICT,
+    statusCode = StatusCodes.CONFLICT
   ) {
     super(message, statusCode);
   }

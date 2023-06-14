@@ -2,6 +2,7 @@ import Express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import AppMiddleware from "./middleware/app.middleware";
+import route from "./routes";
 
 const app = Express();
 
@@ -12,6 +13,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 // routes
+app.use("/", route);
 
 // catch error 404
 app.use(AppMiddleware.catchError404API);

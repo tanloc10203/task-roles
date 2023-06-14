@@ -31,6 +31,7 @@ class AppMiddleware {
       status: "error",
       code: status,
       message,
+      others_message: error.others ?? null,
       exception: error.stack,
     });
   };
