@@ -6,18 +6,12 @@ import {
 } from "@src/utils/covert";
 import { RowDataPacket } from "mysql2";
 
-class Model {
-  protected table: string;
-  protected fillables: Array<string>;
-  protected timestamps: boolean;
+abstract class Model {
+  protected abstract table: string;
+  protected abstract fillables: Array<string>;
+  protected abstract timestamps: boolean;
 
-  constructor() {
-    this.table = "";
-    this.fillables = [];
-    this.timestamps = false;
-  }
-
-  /** @description Phương thức tạo 1 bản ghi */
+  /** @description Phương thức tạo 1 bản ghi. Trả về id sau khi tạo. */
   public create = async (data: { [key: string]: any }) => {
     let sql = "INSERT INTO ?? SET ?";
     const params = [this.table, data];
@@ -26,6 +20,23 @@ class Model {
     const [response] = await DB.query<DBResponseQuery>(sql);
 
     return response.insertId;
+  };
+
+  /** @description Phương thức tạo nhiều bản ghi. */
+  public createBulk = async (data: Array<Array<string | number>>) => {
+    /**
+      data: [['role_id', 'permission_id']] => [[1,2], [3,4]];
+      ["id", "role_id", "permission_id"] => ["role_id", "permission_id"]
+     */
+    const fieldBulk = this.fillables.filter((f) => f !== "id");
+
+    let sql = "INSERT INTO ?? (??) VALUES ?";
+    const params = [this.table, fieldBulk, data];
+    sql = DB.format(sql, params);
+
+    const [response] = await DB.query<DBResponseQuery>(sql);
+
+    return response.affectedRows === 0 ? false : true;
   };
 
   /** @description Phương thức cập nhật 1 bản ghi */

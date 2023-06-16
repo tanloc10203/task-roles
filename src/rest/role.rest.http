@@ -1,0 +1,28 @@
+@url = http://localhost:9999/api/v1/roles
+
+### CREATE PERMISSION
+POST {{url}}
+Content-Type: application/json
+
+{
+  "name": "Product Manager",
+  "desc": "Quản lý sản phẩm",
+  "permissions": [1, 5]
+}
+
+
+### UPDATE PERMISSION
+PATCH {{url}}/2
+Content-Type: application/json
+
+{
+  "name": "Product Add32",
+  "desc": "Thêm sản phẩm 32",
+  "slug": "product.update23"
+}
+
+### DELETE PERMISSION
+DELETE  {{url}}/4
+
+### GET ALL PERMISSION
+GET {{url}}?page=1&limit=5

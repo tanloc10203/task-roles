@@ -1,9 +1,6 @@
-import permissionController from "@src/controllers/permission.controller";
+import { permissionController } from "@src/controllers";
 import RequestMiddleware from "@src/middleware/request.middleware";
-import {
-  PermissionCreateSchema,
-  PermissionUpdateSchema,
-} from "@src/schema/permission.schema";
+import { PermissionCreateSchema, PermissionUpdateSchema } from "@src/schema";
 import { Router } from "express";
 
 const route = Router();
