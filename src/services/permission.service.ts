@@ -1,6 +1,6 @@
 import { Permission } from "@src/models";
 import PermissionModel from "@src/models/Permission.model";
-import { ConflictRequestError } from "@src/responses/error.response";
+import { BadRequestError, ConflictRequestError } from "@src/responses";
 import {
   PermissionInputCreate,
   PermissionInputUpdate,
@@ -48,19 +48,31 @@ class PermissionService {
       throw new ConflictRequestError("Slug đã tồn tại...");
     }
 
-    return await permissionModel.updateById(data, id);
+    if (!(await permissionModel.updateById(data, id))) {
+      throw new BadRequestError(
+        `Có lỗi xảy ra khi cập nhật quyền. Không tìm thấy id = ${id}`
+      );
+    }
+
+    return true;
   };
 
   static getAll = async (filters: {}) => {
     const permissionModel = new PermissionModel();
 
-    return await permissionModel.findAll<Array<Permission>>(filters);
+    return await permissionModel.findAll<Array<Permission>>(filters, "-name");
   };
 
   static deleteById = async (id: number) => {
     const permissionModel = new PermissionModel();
 
-    return await permissionModel.deleteById(id);
+    if (!(await permissionModel.deleteById(id))) {
+      throw new BadRequestError(
+        `Có lỗi xảy ra khi xóa quyền. Không tìm thấy id = ${id}`
+      );
+    }
+
+    return true;
   };
 }
 

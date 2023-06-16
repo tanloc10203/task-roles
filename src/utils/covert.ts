@@ -13,3 +13,33 @@ export const convertObjToString = (obj: { [key: string]: any }) => {
 
   return { where, values };
 };
+
+export const convertStringToArrayForSelect = (
+  select: string,
+  fillables: Array<string>
+) => {
+  if (!select) return fillables;
+
+  let selectCutToObj = select
+    .split(" ")
+    .reduce((obj, value) => (obj = { ...obj, [value]: value }), {});
+
+  let fillablesTemp: Array<string> = [];
+  let result: Array<string> = [];
+
+  Object.keys(selectCutToObj).forEach((key) => {
+    const keyCut = key.split("-"); // ['', 'key'];
+
+    if (keyCut[0] === "" || !keyCut[0]) {
+      if (fillablesTemp.length) {
+        fillablesTemp = [...fillablesTemp.filter((fill) => fill !== keyCut[1])];
+      } else {
+        fillablesTemp = [...fillables.filter((fill) => fill !== keyCut[1])];
+      }
+    } else {
+      result = [...result, keyCut[0]];
+    }
+  });
+
+  return result.length ? result : fillablesTemp;
+};

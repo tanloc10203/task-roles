@@ -12,6 +12,8 @@ export interface Permission extends RowDataPacket {
 
 class PermissionModel extends Model {
   protected table: string = "permissions";
+  protected fillables: string[] = ["id", "name", "desc", "slug"];
+  protected timestamps: boolean = true;
 }
 
 export default PermissionModel;

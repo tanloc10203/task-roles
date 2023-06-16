@@ -1,13 +1,20 @@
 import DB from "@src/database/init.db";
 import { DBResponseQuery } from "@src/types/db";
-import { convertObjToString } from "@src/utils/covert";
+import {
+  convertObjToString,
+  convertStringToArrayForSelect,
+} from "@src/utils/covert";
 import { RowDataPacket } from "mysql2";
 
 class Model {
   protected table: string;
+  protected fillables: Array<string>;
+  protected timestamps: boolean;
 
   constructor() {
     this.table = "";
+    this.fillables = [];
+    this.timestamps = false;
   }
 
   /** @description Phương thức tạo 1 bản ghi */
@@ -47,10 +54,16 @@ class Model {
   public findAll = async <T extends RowDataPacket[]>(
     filter: {
       [key: string]: any;
-    } = {}
+    } = {},
+    select = ""
   ) => {
-    let sql = "SELECT * FROM ??";
-    const params = [this.table];
+    let sql = "SELECT ?? FROM ??";
+    const selects = convertStringToArrayForSelect(
+      select,
+      this.fillables.concat(this.timestamps ? ["created_at", "updated_at"] : [])
+    );
+
+    const params = [selects, this.table];
     sql = DB.format(sql, params);
 
     const [rows] = await DB.query<T[]>(sql);

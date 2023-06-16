@@ -5,9 +5,9 @@ POST {{url}}
 Content-Type: application/json
 
 {
-  "name": "Product Add",
-  "desc": "Thêm sản phẩm",
-  "slug": "product.update"
+  "name": "Product Add 2",
+  "desc": "Thêm sản phẩm 2",
+  "slug": "product.update2"
 }
 
 ### UPDATE PERMISSION
@@ -15,13 +15,13 @@ PATCH {{url}}/2
 Content-Type: application/json
 
 {
-  "name": "Product Add",
-  "desc": "Thêm sản phẩm 2",
-  "slug": "product.update2"
+  "name": "Product Add32",
+  "desc": "Thêm sản phẩm 32",
+  "slug": "product.update23"
 }
 
 ### DELETE PERMISSION
 DELETE  {{url}}/4
 
 ### GET ALL PERMISSION
-GET {{url}}
+GET {{url}}?page=1&limit=5

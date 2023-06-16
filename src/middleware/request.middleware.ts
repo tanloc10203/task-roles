@@ -8,7 +8,7 @@ class RequestMiddleware {
       req: Request<any, any, any>,
       res: Response,
       next: NextFunction
-    ) => Promise<void>
+    ) => Promise<any>
   ) => {
     return (req: Request, res: Response, next: NextFunction) => {
       fn(req, res, next).catch(next);
