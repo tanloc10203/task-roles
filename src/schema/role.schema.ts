@@ -18,4 +18,28 @@ export const RoleCreateSchema = object({
   }),
 });
 
+export const RoleUpdateSchema = object({
+  params: object({
+    id: string({
+      required_error: "Params id trường bắt buộc",
+    }),
+  }),
+  body: object({
+    name: string({
+      required_error: "Tên vai trò là trường bắt buộc",
+    }),
+    desc: string({
+      required_error: "Mô tả là trường bắt buộc",
+    }),
+    permissions: number({
+      required_error: "Permissions là 1 array bắt buộc",
+    })
+      .array()
+      .nonempty({
+        message: "Permissions là 1 array không rỗng.",
+      }),
+  }),
+});
+
 export type RoleInputCreate = TypeOf<typeof RoleCreateSchema>["body"];
+export type RoleInputUpdate = TypeOf<typeof RoleUpdateSchema>;

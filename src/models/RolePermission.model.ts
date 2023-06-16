@@ -8,10 +8,10 @@ export interface RoleRolePermission extends RowDataPacket {
   updated_at?: string;
 }
 
-class RoleRolePermissionModel extends Model {
+class RolePermissionModel extends Model {
   protected table: string = "RolePermissions";
   protected fillables: string[] = ["id", "role_id", "permission_id"];
   protected timestamps: boolean = true;
 }
 
-export default RoleRolePermissionModel;
+export default RolePermissionModel;

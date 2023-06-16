@@ -43,3 +43,17 @@ export const convertStringToArrayForSelect = (
 
   return result.length ? result : fillablesTemp;
 };
+
+/** @description Convert mảng sang chuỗi query */
+export const convertParamToString = (params: Array<string | number>) => {
+  let paramStr = "";
+  let count = params.length;
+  for (let idx = 0; idx < count; idx++) {
+    if (idx == count - 1) {
+      paramStr += JSON.stringify(params[idx]);
+    } else {
+      paramStr += JSON.stringify(params[idx]) + ", ";
+    }
+  }
+  return paramStr;
+};

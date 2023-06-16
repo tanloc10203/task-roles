@@ -5,24 +5,27 @@ POST {{url}}
 Content-Type: application/json
 
 {
-  "name": "Product Manager",
-  "desc": "Quản lý sản phẩm",
-  "permissions": [1, 5]
+  "name": "Adminstrator",
+  "desc": "Quản trị viên",
+  "permissions": [11, 12, 1, 5]
 }
 
 
 ### UPDATE PERMISSION
-PATCH {{url}}/2
+PATCH {{url}}/1
 Content-Type: application/json
 
 {
-  "name": "Product Add32",
-  "desc": "Thêm sản phẩm 32",
-  "slug": "product.update23"
+  "name": "Add Product And Post",
+  "desc": "Thêm sản phẩm và bài viết",
+  "permissions": [1, 11]
 }
 
 ### DELETE PERMISSION
-DELETE  {{url}}/4
+DELETE  {{url}}/6
 
 ### GET ALL PERMISSION
 GET {{url}}?page=1&limit=5
+
+### GET BY ID
+GET {{url}}/1

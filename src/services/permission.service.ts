@@ -60,7 +60,7 @@ class PermissionService {
   static getAll = async (filters: {}) => {
     const permissionModel = new PermissionModel();
 
-    return await permissionModel.findAll<Array<Permission>>(filters, "-name");
+    return await permissionModel.findAll<Permission>(filters);
   };
 
   static deleteById = async (id: number) => {
