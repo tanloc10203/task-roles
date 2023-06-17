@@ -41,8 +41,8 @@ export class BadRequestError extends ErrorResponse {
 
 export class ForbiddenRequestError extends ErrorResponse {
   constructor(
-    message = ReasonPhrases.BAD_REQUEST,
-    statusCode = StatusCodes.BAD_REQUEST
+    message = ReasonPhrases.FORBIDDEN,
+    statusCode = StatusCodes.FORBIDDEN
   ) {
     super(message, statusCode);
   }
